@@ -23,7 +23,7 @@ const Hero = () => {
                 </h2>
 
                 <TextGenerateEffect
-                    words="I love making meth yummy"
+                    words="Transforming Concepts into Seamless User Experiences"
                     className="text-center text-[40px] md:text-5xl lg:text-6xl"
                 />
 
