@@ -34,18 +34,39 @@ export const TextGenerateEffect = ({
     return (
       <motion.div ref={scope}>
         {wordsArray.map((word, idx) => {
-          return (
-            <motion.span
-              key={word + idx}
-              className={`${idx > 3 ? 'text-purple' : 'dark:text-white text-black'} opacity-0`}
-              style={{
-                filter: filter ? "blur(10px)" : "none",
-              }}
-            >
-              {word}{" "}
-            </motion.span>
-          );
+          if (idx <= 1) {
+            return (
+              <motion.span
+                key={word + idx}
+                className={`${idx > 0 ? "text-purple" : "dark:text-white text-black"} opacity-0`}
+                style={{
+                  filter: filter ? "blur(10px)" : "none",
+                }}
+              >
+                {word}{" "}
+              </motion.span>
+            );
+          }
+          return null;
         })}
+
+        {wordsArray.length > 2 && (
+          <>
+            <span className="block mt-2 text-2xl leading-tight">
+              {wordsArray.slice(2).map((word, i) => (
+                <motion.span
+                  key={word + (i + 2)}
+                  className="opacity-0 dark:text-white text-black"
+                  style={{
+                    filter: filter ? "blur(10px)" : "none",
+                  }}
+                >
+                  {word}{" "}
+                </motion.span>
+              ))}
+            </span>
+          </>
+        )}
       </motion.div>
     );
   };
@@ -60,3 +81,4 @@ export const TextGenerateEffect = ({
     </div>
   );
 };
+
