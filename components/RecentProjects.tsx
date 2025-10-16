@@ -46,7 +46,7 @@ const RecentProjects = () => {
                             </div>
 
                             {livesite? <div className='flex justify-center items-center'>
-                                <LiveLink link={link} title={title} />
+                                <LiveLink link={livesite} title={title} />
                             </div>: ''}
                         </div>
                     </PinContainer>
