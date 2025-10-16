@@ -8,6 +8,7 @@ import {useState} from 'react'
 import animationData from "@/data/confetti.json"
 import MagicButton from "./MagicButton";
 import { IoCopyOutline } from "react-icons/io5";
+import { Gauge } from "./Gauge";
 
 export const BentoGrid = ({
   className,
@@ -150,6 +151,12 @@ export const BentoGridItem = ({
             />
           </div>
         )}
+
+        {id === 8 && (
+          <Gauge maxVal={4} value={4} duration={1000} size={160} />
+        )}
+
+
       </div>
     </div>
     </div>

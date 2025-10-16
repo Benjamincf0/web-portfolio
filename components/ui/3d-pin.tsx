@@ -22,22 +22,22 @@ export const PinContainer = ({
   );
 
   const onMouseEnter = () => {
-    setTransform("translate(-50%,-50%) rotateX(40deg) scale(0.8)");
+    setTransform("translate(-50%,-50%) rotateX(10deg) scale(0.9)");
   };
   const onMouseLeave = () => {
     setTransform("translate(-50%,-50%) rotateX(0deg) scale(1)");
   };
 
-  return (
-    <a
-      className={cn(
-        "relative group/pin z-50  cursor-pointer",
-        containerClassName
-      )}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      href={href || "/"}
-    >
+  const wrapperClass = cn(
+    "relative group/pin z-50",
+    // only show pointer cursor for actual links
+    title === "" ? "" : "cursor-pointer",
+    containerClassName
+  );
+
+  // Shared inner content (the 3D pin and perspective)
+  const innerContent = (
+    <>
       <div
         style={{
           perspective: "1000px",
@@ -54,7 +54,33 @@ export const PinContainer = ({
           <div className={cn(" relative z-50 ", className)}>{children}</div>
         </div>
       </div>
-      <PinPerspective title={title} href={href} />
+      {/* render perspective only when title is not an empty string */}
+      {title !== "" && <PinPerspective title={title} href={href} />}
+    </>
+  );
+
+  // If title is an empty string, render a non-clickable wrapper (div).
+  if (title === "") {
+    return (
+      <div
+        className={wrapperClass}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+      >
+        {innerContent}
+      </div>
+    );
+  }
+
+  // Otherwise render the original link behavior.
+  return (
+    <a
+      className={wrapperClass}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      href={href || "/"}
+    >
+      {innerContent}
     </a>
   );
 };

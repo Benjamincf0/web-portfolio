@@ -2,18 +2,19 @@ import { projects } from '@/data'
 import React from 'react'
 import { PinContainer } from './ui/3d-pin'
 import { FaLocationArrow } from 'react-icons/fa'
+import LiveLink from './LiveLink.client'
 
 const RecentProjects = () => {
   return (
-    <div className='py-20' id='projects'>
+    <div className='mt-40 py-20' id='projects'>
         <h1 className='heading'>
-            A small selection of {' '}
+            Some of my {' '}
             <span className="text-purple">recent projects</span>
         </h1>
         <div className="flex flex-wrap items-center justify-center p-4 gap-x-24 gap-y-4 sm:gap-y-8 mt-10">
-            {projects.map(({id, title, des, img, iconLists, link}) => (
+            {projects.map(({id, title, des, img, iconLists, link, livesite}) => (
                 <div key={id} className='sm:h-[41rem] lg:min-h-[32.5rem] h-[32rem] flex items-center justify-center sm:w-[570px] w-[80vw]'>
-                    <PinContainer title={link.split('//')[1]} href={link}>
+                    <PinContainer title={link? link.split('//')[1]: ''} href={link? link: ''}>
                         <div className='relative flex justify-center items-center sm:w-[570px] sm:h-[40vh] w-[80vw] overflow-hidden h-[30vh] mb-10'>
                             <div className='w-full relative h-full overflow-hidden lg:rounded-3xl bg-[#13162d]'>
                                 <img src='/bg.png' />
@@ -45,10 +46,9 @@ const RecentProjects = () => {
                                 ))}
                             </div>
 
-                            <div className='flex justify-center items-center'>
-                                <p className='flex lg:text-xl md:text-xs text-sm text-purple'>Check live site</p>
-                                <FaLocationArrow className='ms-3' color='#CBACF9'/>
-                            </div>
+                            {livesite? <div className='flex justify-center items-center'>
+                                <LiveLink link={link} title={title} />
+                            </div>: ''}
                         </div>
                     </PinContainer>
                 </div>))}

@@ -4,6 +4,11 @@
 
 @layer base {
   :root {
+    --gauge-danger: 0, 100%, 50%; /* Red */
+    --gauge-warning: 60, 100%, 50%; /* Yellow */
+    --gauge-success: 120, 100%, 50%; /* Green */
+    --gauge-bg: 220, 20%, 20%; /* Background */
+
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
 

@@ -36,7 +36,7 @@ const Hero = () => {
                 </p>
 
                 <div className='flex flex-row gap-4'>
-                    <a href="#about">
+                    <a href="#projects">
                         <MagicButton 
                             title="Show my work" 
                             icon={<FaLocationArrow/>} 
@@ -52,8 +52,8 @@ const Hero = () => {
                     </a>
                     <a href="https://www.linkedin.com/in/benjaminc-f/">
                         <MagicButton 
-                            title="Linkedin" 
-                            icon={<img src={socialMedia[2].img}/>}
+                            title="Linkedin"
+                            icon={<img src={socialMedia[1].img}/>}
                             position="left"
                         />
                     </a>
