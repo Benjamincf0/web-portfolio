@@ -1,7 +1,6 @@
 import React from 'react'
 import MagicButton from './ui/MagicButton'
 import { FaLocationArrow } from 'react-icons/fa'
-import { socialMedia } from '@/data'
 
 const Footer = () => (
     <footer className="w-full mb-[100px] md:mb-5 pb-10" id="contact">

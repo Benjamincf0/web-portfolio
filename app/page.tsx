@@ -5,7 +5,6 @@ import Footer from "@/components/Footer";
 import Experience from "@/components/Experience";
 import { FloatingNav } from "@/components/ui/floating-navbar";
 import { navItems } from "@/data";
-import { FaHome } from "react-icons/fa";
 
 export default function Home() {
   return (
