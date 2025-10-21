@@ -20,7 +20,7 @@ export const BentoGrid = ({
   return (
     <div
       className={cn(
-        "grid grid-cols-1 md:grid-cols-6 lg:grid-cols-5 md:grid-row-7 gap-4 lg:gap-8 mx-auto",
+        "grid grid-cols-1 md:grid-cols-6 md:grid-row-7 gap-4 lg:gap-8 mx-auto",
         className,
       )}
     >
@@ -98,18 +98,18 @@ export const BentoGridItem = ({
           <div className="font-sans font-extralight text-[#c1c2d3] text-sm md:text-xs lg:text-base z-10">
             {description}
           </div>
-          <div className="font-sans font-bold text-lg lg:text-3xl max-w-96 z-10">
+          <div className="font-sans font-bold text-lg md:text-3xl max-w-96 z-10">
             {title}
           </div>
 
         {id === 2 && <GridGlobe />}
 
         {id === 3 && (
-          <div className='flex gap-1 lg:gap-5 w-fit absolute -right-3 lg:-right-2'>
-            <div className="flex flex-col gap-3 lg:gap-8">
+          <div className='flex gap-1 md:gap-5 w-fit absolute -right-3 md:-right-2'>
+            <div className="flex flex-col gap-3 md:gap-8">
               {['React.js', 'Next.js', 'TypeScript'].map(
                 (item) => (
-                  <span key={item} className="py-2 lg:py-4 lg:px-3 px-3 text-xs lg:text-base opacity-50 lg:opacity-100 rounded-lg text-center bg-[#10132E]">
+                  <span key={item} className="py-2 md:py-4 md:px-3 px-3 text-xs md:text-base opacity-50 md:opacity-100 rounded-lg text-center bg-[#10132E]">
                     {item}
                   </span>
                 )
@@ -117,11 +117,11 @@ export const BentoGridItem = ({
               <span className="py-4 px-3 rounded-lg text-center bg-[#10132e]"/>
             </div>
             
-            <div className="flex flex-col gap-3 lg:gap-8">
+            <div className="flex flex-col gap-3 md:gap-8">
               <span className="py-4 px-3 rounded-lg text-center bg-[#10132e]"/>
               {['VueJS', 'AWS', 'MongoDB'].map(
                 (item) => (
-                  <span key={item} className="py-2 lg:py-4 lg:px-3 px-3 text-xs lg:text-base opacity-50 lg:opacity-100 rounded-lg text-center bg-[#10132E]">
+                  <span key={item} className="py-2 md:py-4 md:px-3 px-3 text-xs md:text-base opacity-50 md:opacity-100 rounded-lg text-center bg-[#10132E]">
                     {item}
                   </span>
                 )
@@ -153,7 +153,9 @@ export const BentoGridItem = ({
         )}
 
         {id === 8 && (
-          <Gauge maxVal={4} value={4} duration={1000} size={160} />
+          <div className="flex justify-center">
+            <Gauge maxVal={4} value={4} duration={1000} size={160} />
+          </div>
         )}
 
 
