@@ -2,6 +2,12 @@ import { projects } from '@/data'
 import React from 'react'
 import { PinContainer } from './ui/3d-pin'
 import LiveLink from './LiveLink.client'
+import MirrorEffect from './ui/MirrorEffect'
+// import Grid from "@/components/Grid";
+// import Hero from "@/components/Hero"
+// // import RecentProjects from "@/components/RecentProjects";
+// import Footer from "@/components/Footer";
+// import Experience from "@/components/Experience";
 
 const RecentProjects = () => {
   return (
@@ -17,13 +23,17 @@ const RecentProjects = () => {
                         <div className='relative flex justify-center items-center sm:w-[570px] sm:h-[40vh] w-[80vw] overflow-hidden h-[30vh] mb-10'>
                             <div className='w-full relative h-full overflow-hidden lg:rounded-3xl bg-[#13162d]'>
                                 <img src='/bg.png' />
-                                <img src={img} />
+                                
+                                {id == 0 ?
+                                    <MirrorEffect/>
+                                    : 
+                                    <img 
+                                        src={img? img : "/"}
+                                        alt={title}
+                                        className='z-10 absolute bottom-0'
+                                    />
+                                }
                             </div>
-                            <img 
-                                src={img}
-                                alt={title}
-                                className='z-10 absolute bottom-0'
-                            />
                         </div>
                         <h1 className='font-bold lg:text-2xl md:text-xl text-base line-clamp-1'>
                             {title}
@@ -33,6 +43,7 @@ const RecentProjects = () => {
                             {des}
                         </p>
 
+                        {/* bottom section tech stack & live link  */}
                         <div className='flex items-center justify-between mt-7 mb-3'>
                             <div className='flex items-center'>
                                 {iconLists.map((icon, index) => (

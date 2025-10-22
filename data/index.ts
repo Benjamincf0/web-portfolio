@@ -94,11 +94,18 @@ export const gridItems = [
 
 export const projects = [
   {
+    id: 0,
+    title: "My portfolio",
+    des: "My personal portfolio website showcasing my programming capabilities",
+    img: null,
+    iconLists: []
+  },
+  {
     id: 1,
     title: "Neural Network Library From Scratch",
     des: "A neural network library built from scratch using NumPy. This project implements backpropagation, gradient descent, and various activation functions to create a deep learning system capable of recognizing handwritten digits with ~96% accuracy.",
     img: "/projects/neural_net.gif",
-    iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/fm.svg"],
+    iconLists: ["/logos/numpy.svg", "/logos/python.svg", "/logos/tensorflow.svg", "/logos/keras.png"],
     link: "https://github.com/Benjamincf0/AI",
   },
   {
