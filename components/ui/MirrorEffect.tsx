@@ -1,65 +1,88 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
+const LARGE_IMAGE_URL = '/screenshot-lg.png';
+const SMALL_IMAGE_URL = '/screenshot-sm.png';
+
+// Determines the correct image URL based on screen width, with SSR safety.
+const getImageUrl = () => {
+  // On the server, default to the large image as media queries are not available.
+  if (typeof window === 'undefined') {
+    return LARGE_IMAGE_URL;
+  }
+  // On the client, check the media query to select the appropriate image.
+  return window.matchMedia('(min-width: 1024px)').matches
+    ? LARGE_IMAGE_URL
+    : SMALL_IMAGE_URL;
+};
+
+/**
+ * A component that creates a parallax scrolling effect on an image.
+ * The image appears to scroll at a different speed than the page content.
+ * It also responsively switches between a large and small image.
+ */
 const MirrorEffect = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [scrollY, setScrollY] = useState(0);
+  // Ref to access the underlying <img> DOM element.
+  const imageRef = useRef<HTMLImageElement>(null);
+  // State to hold the vertical offset for the parallax effect.
+  const [offset, setOffset] = useState(0);
+  // State for the current image URL, initialized with an SSR-safe function.
+  const [imageUrl, setImageUrl] = useState(getImageUrl);
 
-  // This effect loads the correct screenshot based on screen size.
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(min-width: 1024px)');
+  // Memoized handler to calculate and apply the parallax scroll effect.
+  const handleScrollAndResize = useCallback(() => {
+    const image = imageRef.current;
+    if (!image) return;
 
-    const loadImage = () => {
-      const image = new Image();
-      image.src = mediaQuery.matches ? '/screenshot-lg.png' : '/screenshot-sm.png';
+    const doc = document.documentElement;
+    const scrollableHeight = doc.scrollHeight - doc.clientHeight;
+    // Calculate scroll progress as a percentage (0 to 1).
+    const scrollPercentage =
+      scrollableHeight > 0 ? window.scrollY / scrollableHeight : 0;
 
-      image.onload = () => {
-        const mirrorCanvas = canvasRef.current;
-        if (mirrorCanvas) {
-          const context = mirrorCanvas.getContext('2d');
-          if (context) {
-            // Set the canvas dimensions to match the loaded image
-            mirrorCanvas.width = image.width;
-            mirrorCanvas.height = image.height;
-            // Draw the image onto the canvas
-            context.drawImage(image, 0, 0);
-          }
-        }
-      };
-    };
+    // Determine how much the image itself can scroll within the viewport.
+    const imageScrollableHeight = image.offsetHeight - doc.clientHeight;
 
-    // Load the initial image
-    loadImage();
+    // Only apply the parallax effect if the image is taller than the viewport.
+    const newOffset =
+      imageScrollableHeight > 0
+        ? scrollPercentage * imageScrollableHeight
+        : 0;
 
-    // Add a listener to reload the image if the screen size changes
-    mediaQuery.addEventListener('change', loadImage);
-
-    // Cleanup the event listener on component unmount
-    return () => {
-      mediaQuery.removeEventListener('change', loadImage);
-    };
-  }, []); // Empty dependency array ensures this setup runs only once.
-
-  // This effect tracks the scroll position.
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    // Cleanup the event listener when the component unmounts.
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    setOffset(newOffset);
   }, []);
 
+  // Effect to set up and clean up event listeners.
+  useEffect(() => {
+    // Media query to detect screen size changes for responsive images.
+    const mediaQuery = window.matchMedia('(min-width: 1024px)');
+
+    // Handler to update the image URL when the media query match status changes.
+    const updateImageUrl = () => setImageUrl(getImageUrl());
+
+    // Attach event listeners for scroll, resize, and media query changes.
+    mediaQuery.addEventListener('change', updateImageUrl);
+    window.addEventListener('scroll', handleScrollAndResize);
+    window.addEventListener('resize', handleScrollAndResize);
+
+    // Cleanup function to remove event listeners when the component unmounts.
+    return () => {
+      mediaQuery.removeEventListener('change', updateImageUrl);
+      window.removeEventListener('scroll', handleScrollAndResize);
+      window.removeEventListener('resize', handleScrollAndResize);
+    };
+  }, [handleScrollAndResize]);
+
   return (
-    <canvas
-      className='z-10 absolute w-full'
-      ref={canvasRef}
-      style={{ top: `-${scrollY}px` }}
+    <img
+      ref={imageRef}
+      src={imageUrl}
+      alt="Project screenshot for mirror effect"
+      className="z-10 absolute w-full"
+      style={{ top: `-${offset}px` }}
+      // Recalculate offset when the image (re)loads to handle size changes.
+      onLoad={handleScrollAndResize}
     />
   );
 };
