@@ -35,7 +35,7 @@ const Hero = () => {
                     student
                 </p>
 
-                <div className='flex flex-row gap-4'>
+                <div className='flex flex-col gap-4 sm:flex-row'>
                     <a href="#projects">
                         <MagicButton 
                             title="Show my work" 

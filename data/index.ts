@@ -94,13 +94,6 @@ export const gridItems = [
 
 export const projects = [
   {
-    id: 0,
-    title: "My portfolio",
-    des: "My personal portfolio website showcasing my programming capabilities",
-    img: null,
-    iconLists: []
-  },
-  {
     id: 1,
     title: "Neural Network Library From Scratch",
     des: "A neural network library built from scratch using NumPy. This project implements backpropagation, gradient descent, and various activation functions to create a deep learning system capable of recognizing handwritten digits with ~96% accuracy.",
@@ -125,6 +118,21 @@ export const projects = [
     iconLists: ["/logos/css.svg", "/logos/html5.svg", "/logos/javascript.svg"],
     link: null,
   },
+  {
+    id: 0,
+    title: "My portfolio",
+    des: "My personal portfolio website showcasing my programming capabilities",
+    img: null,
+    iconLists: []
+  },
+  // {
+  //   id: 4,
+  //   title: "ArduCar",
+  //   des: "Created a remote controlled car",
+  //   img: null,
+  //   iconLists: [],
+  //   link: "https://github.com/mingli202/arducar"
+  // },
 ];
 
 export const testimonials = [
