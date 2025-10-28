@@ -8,10 +8,11 @@ const Experience = () => (
             <span className="text-purple">work experience</span>
         </h1>
         <div className="flex flex-col gap-4 mt-20">
-            {workExperience.map(({id, title, desc, className, thumbnail, start, end})=>(
+            {workExperience.map(({id, title, company, desc, className, thumbnail, start, end})=>(
                 <ExperienceCard
                     key={id}
                     title={title}
+                    company={company}
                     desc={desc}
                     className={className}
                     thumbnail={thumbnail}

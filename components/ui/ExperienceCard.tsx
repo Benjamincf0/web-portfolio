@@ -5,6 +5,7 @@ import React, { useRef } from 'react'
 const ExperienceCard = (
     {
       title,
+      company,
       desc,
       className,
       thumbnail,
@@ -12,6 +13,7 @@ const ExperienceCard = (
       end }:
     {
       title: string; 
+      company: string;
       desc: string; 
       className: string; 
       thumbnail: string; 
@@ -118,11 +120,14 @@ const ExperienceCard = (
                 willChange: 'left, top, opacity',
               }}
             />
-            <h3 className="text-lg font-semibold">{title}</h3>
+            <div>
+              <h3 className="text-lg font-semibold">{title}</h3>
+              <h4>{company}</h4>
+            </div>
             <h4 className=" hidden sm:block absolute right-[24px] top-[24px] text-base text-gray-300">{start} - {end}</h4>
             <div className="mt-4 flex items-start gap-4">
                 <img src={thumbnail} alt="" className="w-16 h-16 object-cover rounded-md flex-shrink-0" />
-                <p className="text-sm text-gray-200">{desc}</p>
+                <p className="text-sm text-gray-200 whitespace-pre-line">{desc}</p>
             </div>
         </div>
   )

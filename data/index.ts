@@ -180,10 +180,10 @@ export const workExperience = [
     id: 1,
     title: "Artificial Intelligence Intern",
     company: "iSMART Lab",
-    desc: "Assisted in the data collection and preprocessing for cutting edge AI research.",
+    desc: "• Developed a video synchronization & compression library using FFmpeg and OpenCV to prepare for training.\n• Coded a data pre-processing pipeline to clean raw human vital signals for machine learning models.\n• Built and programmed a task labeling device using Arduino and C++ to split recording segments appropriately\n• Created a high quality multi-modal dataset of over 50 hours of recordings from dozens of study participants.",
     className: "md:col-span-2 bg-[#3b0e19]", // change to md:col-span-2
     thumbnail: "/exp1.png",
-    start: "April 2024",
+    start: "May 2024",
     end: "Present",
   },
   // {

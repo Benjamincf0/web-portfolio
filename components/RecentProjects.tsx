@@ -48,7 +48,7 @@ const RecentProjects = () => {
                             </a>: <></>}
                         </div>
 
-                        <p className='lg:text-xl lg:font-normal font-light text-sm line-clamp-21'>
+                        <p className='lg:text-xl lg:font-normal font-light text-sm line-clamp-21 text-white-200'>
                             {des}
                         </p>
 

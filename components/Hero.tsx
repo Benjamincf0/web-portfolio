@@ -24,7 +24,7 @@ const Hero = () => {
                 </h2>
 
                 <TextGenerateEffect
-                    words="I&apos;m Benjamin Curis-Friedman"
+                    words="I&apos;m Benjamin"
                     className="text-center text-[40px] md:text-5xl lg:text-6xl"
                 />
 
@@ -43,14 +43,14 @@ const Hero = () => {
                             position="right"
                         />
                     </a>
-                    <a href="https://github.com/Benjamincf0">
+                    <a href="https://github.com/Benjamincf0" target='_blank'>
                         <MagicButton 
                             title="Github" 
                             icon={<img src={socialMedia[0].img}/>} 
                             position="left"
                         />
                     </a>
-                    <a href="https://www.linkedin.com/in/benjaminc-f/">
+                    <a href="https://www.linkedin.com/in/benjaminc-f/" target='_blank'>
                         <MagicButton 
                             title="Linkedin"
                             icon={<img src={socialMedia[1].img}/>}
