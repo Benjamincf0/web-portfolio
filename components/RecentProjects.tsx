@@ -1,6 +1,5 @@
 import { companies, projects } from '@/data'
 import React from 'react'
-import { PinContainer } from './ui/3d-pin'
 import LiveLink from './LiveLink.client'
 import MirrorEffect from './ui/MirrorEffect'
 // import Grid from "@/components/Grid";
