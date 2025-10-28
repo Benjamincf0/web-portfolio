@@ -168,43 +168,18 @@ export const testimonials = [
   },
 ];
 
-export const companies = [
-  {
-    id: 1,
-    name: "cloudinary",
-    img: "/cloud.svg",
-    nameImg: "/cloudName.svg",
-  },
-  {
-    id: 2,
-    name: "appwrite",
-    img: "/app.svg",
-    nameImg: "/appName.svg",
-  },
-  {
-    id: 3,
-    name: "HOSTINGER",
-    img: "/host.svg",
-    nameImg: "/hostName.svg",
-  },
-  {
-    id: 4,
-    name: "stream",
-    img: "/s.svg",
-    nameImg: "/streamName.svg",
-  },
-  {
-    id: 5,
-    name: "docker.",
-    img: "/dock.svg",
-    nameImg: "/dockerName.svg",
-  },
-];
+export const companies = {
+  "Github":{
+    id: 6,
+    img:"/logos/github.svg",
+  }
+};
 
 export const workExperience = [
   {
     id: 1,
-    title: "Research Assistant - iSMART AI Lab, McGill University",
+    title: "Artificial Intelligence Intern",
+    company: "iSMART Lab",
     desc: "Assisted in the data collection and preprocessing for cutting edge AI research.",
     className: "md:col-span-2 bg-[#3b0e19]", // change to md:col-span-2
     thumbnail: "/exp1.png",
